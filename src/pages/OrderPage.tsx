@@ -87,9 +87,6 @@ export function OrderPage() {
   e.preventDefault()
   setSubmitting(true)
 
-  
-
-  try {
   const formData = new FormData()
   formData.append('prenom', form.prenom)
   formData.append('nom', form.nom)
@@ -105,22 +102,18 @@ export function OrderPage() {
   formData.append('commentaires', form.commentaires)
   if (form.fichier) formData.append('fichier', form.fichier)
 
-  const response = await fetch('https://formspree.io/f/mzdywzay', {
-    method: 'POST',
-    body: formData,
-    headers: { Accept: 'application/json' },
-  })
-
-  if (response.ok) {
+  try {
+    await fetch('https://formspree.io/f/mzdywzay', {
+      method: 'POST',
+      body: formData,
+      headers: { Accept: 'application/json' },
+    })
+  } catch {
+    // continue
+  } finally {
+    setSubmitting(false)
     navigate('/merci')
-  } else {
-    alert('Une erreur est survenue. Veuillez réessayer.')
   }
-} catch {
-  alert('Une erreur est survenue. Vérifiez votre connexion.')
-} finally {
-  setSubmitting(false)
-}
 }
 
   return (
