@@ -87,20 +87,7 @@ export function OrderPage() {
   e.preventDefault()
   setSubmitting(true)
 
-  const data = {
-    prenom: form.prenom,
-    nom: form.nom,
-    email: form.email,
-    telephone: form.telephone,
-    entreprise: form.entreprise,
-    typeProjet: form.serviceType,
-    description: form.description,
-    budget: form.budget,
-    delai: form.delai,
-    fonctionnalites: form.fonctionnalites.join(', '),
-    referencesSites: form.referencesSites,
-    commentaires: form.commentaires,
-  }
+  
 
   try {
   const formData = new FormData()
